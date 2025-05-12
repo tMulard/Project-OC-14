@@ -1,0 +1,11 @@
+table {
+    border: 1px solid #ddd !important;
+}
+th {
+    font-size: 14px;
+    width: 80px;
+}
+tr {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
