@@ -5,9 +5,14 @@
     transition: 300ms;
     margin: 0 auto;
     text-align: center;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     box-sizing: border-box;
     max-width: 500px;
+    padding: 20px;
+    /* overflow-y: scroll; */
 }
 
 .hidden {
