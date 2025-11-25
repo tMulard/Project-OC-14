@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Modal from "./components/Modal";
+import Modal from "hrnet-pluginsimplemodal";
 
 function App() {
   const [isHidden, setIsHidden] = useState(true);

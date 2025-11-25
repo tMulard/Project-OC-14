@@ -1,10 +1,14 @@
 import { Link } from "react-router";
-
+import Modal from "hrnet-pluginsimplemodal";
 import "./App.css";
 import { useData } from "../../hooks/useData";
 
 function App() {
   const { setEmployees } = useData();
+
+  const [isHidden, setIsHidden] = useState(true);
+
+  const handleClick = () => { setIsHidden(!isHidden); };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +19,8 @@ function App() {
     setEmployees(prev => [
       ...prev, data
     ]);
+
+    setIsHidden(!isHidden);
   };
 
   return (
@@ -56,9 +62,12 @@ function App() {
           <button type="submit">Save</button>
         </form>
       </div>
-      <div id="confirmation" class="modal">
+      {/* <div id="confirmation" class="modal">
         Employee Created!
-      </div>
+      </div> */}
+      <Modal id="confirmation" isHidden={isHidden} isHiddenCross={false} toggleDisplay={handleClick}>
+        <h1>Employee Created!</h1>
+      </Modal>
     </div>
   );
 }
