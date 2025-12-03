@@ -1,14 +1,18 @@
 import { Link } from "react-router";
-import Modal from "hrnet-pluginsimplemodal";
+// import Modal from "hrnet-pluginsimplemodal";
 import "./App.css";
 import { useData } from "../../hooks/useData";
+import DatePicker from "../../Components/DatePicker/DatePicker";
+import DataTable from "../../Components/DataTable/DataTable";
+import RollMenu from "../../Components/RollMenu/RollMenu";
+
 
 function App() {
   const { setEmployees } = useData();
 
-  const [isHidden, setIsHidden] = useState(true);
+  // const [isHidden, setIsHidden] = useState(true);
 
-  const handleClick = () => { setIsHidden(!isHidden); };
+  // const handleClick = () => { setIsHidden(!isHidden); };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +24,7 @@ function App() {
       ...prev, data
     ]);
 
-    setIsHidden(!isHidden);
+    // setIsHidden(!isHidden);
   };
 
   return (
@@ -36,10 +40,12 @@ function App() {
           <input type="text" id="first-name" name="firstName" />
           <label for="last-name">Last Name</label>
           <input type="text" id="last-name" name="lastName" />
-          <label for="date-of-birth">Date of Birth</label>
-          <input id="date-of-birth" type="date" name="dateOfBirth" />
-          <label for="start-date">Start Date</label>
-          <input id="start-date" type="date" name="startDate" />
+          <DatePicker id="date-of-birth" name="dateOfBirth" title="Date of Birth" />
+          {/* <label for="date-of-birth">Date of Birth</label>
+          <input id="date-of-birth" type="date" name="dateOfBirth" /> */}
+          <DatePicker id="start-date" name="startDate" title="Start Date" />
+          {/* <label for="start-date">Start Date</label>
+          <input id="start-date" type="date" name="startDate" /> */}
           <fieldset class="address">
             <legend>Address</legend>
             <label for="street">Street</label>
@@ -62,12 +68,12 @@ function App() {
           <button type="submit">Save</button>
         </form>
       </div>
-      {/* <div id="confirmation" class="modal">
+      <div id="confirmation" class="modal">
         Employee Created!
-      </div> */}
-      <Modal id="confirmation" isHidden={isHidden} isHiddenCross={false} toggleDisplay={handleClick}>
+      </div>
+      {/* <Modal id="confirmation" isHidden={isHidden} isHiddenCross={false} toggleDisplay={handleClick}>
         <h1>Employee Created!</h1>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }
