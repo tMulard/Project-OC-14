@@ -5,7 +5,7 @@ import { useData } from "../../hooks/useData";
 import DatePicker from "../../Components/DatePicker/DatePicker";
 import DataTable from "../../Components/DataTable/DataTable";
 import RollMenu from "../../Components/RollMenu/RollMenu";
-
+import TextInput from "../../Components/TextInput/TextInput";
 
 function App() {
   const { setEmployees } = useData();
@@ -29,35 +29,25 @@ function App() {
 
   return (
     <div>
-      <div class="title">
+      <div className="title">
         <h1>HRnet</h1>
       </div>
-      <div class="container">
+      <div className="container">
         <Link to="/current">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form action="#" id="create-employee" onSubmit={onSubmit}>
-          <label for="first-name">First Name</label>
-          <input type="text" id="first-name" name="firstName" />
-          <label for="last-name">Last Name</label>
-          <input type="text" id="last-name" name="lastName" />
+          <TextInput id="first-name" name="firstname" title="First Name" />
+          <TextInput id="last-name" name="lastname" title="Last Name" />
           <DatePicker id="date-of-birth" name="dateOfBirth" title="Date of Birth" />
-          {/* <label for="date-of-birth">Date of Birth</label>
-          <input id="date-of-birth" type="date" name="dateOfBirth" /> */}
           <DatePicker id="start-date" name="startDate" title="Start Date" />
-          {/* <label for="start-date">Start Date</label>
-          <input id="start-date" type="date" name="startDate" /> */}
-          <fieldset class="address">
+          <fieldset className="address">
             <legend>Address</legend>
-            <label for="street">Street</label>
-            <input id="street" type="text" name="street" />
-            <label for="city">City</label>
-            <input id="city" type="text" name="city" />
-            <label for="state">State</label>
-            <select name="state" id="state"></select>
-            <label for="zip-code">Zip Code</label>
-            <input id="zip-code" type="number" name="zipCode" />
+            <TextInput id="street" name="street" title="Street" />
+            <TextInput id="city" name="city" title="City" />
+            <RollMenu id="state" name="state" title="State" />
+            <TextInput id="zip-code" name="zipCode" title="Zip Code" />
           </fieldset>
-          <label for="department">Department</label>
+          <label htmlFor="department">Department</label>
           <select name="department" id="department">
             <option>Sales</option>
             <option>Marketing</option>
@@ -68,7 +58,7 @@ function App() {
           <button type="submit">Save</button>
         </form>
       </div>
-      <div id="confirmation" class="modal">
+      <div id="confirmation" className="modal">
         Employee Created!
       </div>
       {/* <Modal id="confirmation" isHidden={isHidden} isHiddenCross={false} toggleDisplay={handleClick}>

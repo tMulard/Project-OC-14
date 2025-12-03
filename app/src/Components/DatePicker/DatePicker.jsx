@@ -4,7 +4,7 @@ function DatePicker({id, name, title}) {
 
     return(
         <>
-            <label for={id}>{title}</label>
+            <label htmlFor={id}>{title}</label>
             <input id={id} type="date" name={name} />
         </>
     );
