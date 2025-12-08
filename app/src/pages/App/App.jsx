@@ -1,14 +1,15 @@
 import { Link } from "react-router";
 // import Modal from "hrnet-pluginsimplemodal";
 import "./App.css";
-import { useData } from "../../hooks/useData";
+
 import DatePicker from "../../Components/DatePicker/DatePicker";
-import DataTable from "../../Components/DataTable/DataTable";
-import RollMenu from "../../Components/RollMenu/RollMenu";
 import TextInput from "../../Components/TextInput/TextInput";
+import RollMenu from "../../Components/RollMenu/RollMenu";
+import {states} from "../../arrays.js";
+import {departments} from "../../arrays.js";
+import DataTable from "../../Components/DataTable/DataTable";
 
 function App() {
-  const { setEmployees } = useData();
 
   // const [isHidden, setIsHidden] = useState(true);
 
@@ -20,9 +21,9 @@ function App() {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    setEmployees(prev => [
-      ...prev, data
-    ]);
+    // setEmployees(prev => [
+    //   ...prev, data
+    // ]);
 
     // setIsHidden(!isHidden);
   };
@@ -44,17 +45,10 @@ function App() {
             <legend>Address</legend>
             <TextInput id="street" name="street" title="Street" />
             <TextInput id="city" name="city" title="City" />
-            <RollMenu id="state" name="state" title="State" />
+            <RollMenu id="state" title="State" options={states} />
             <TextInput id="zip-code" name="zipCode" title="Zip Code" />
           </fieldset>
-          <label htmlFor="department">Department</label>
-          <select name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+          <RollMenu id="department" title="Departments" options={departments} />
           <button type="submit">Save</button>
         </form>
       </div>

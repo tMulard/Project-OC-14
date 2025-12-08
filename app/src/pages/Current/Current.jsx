@@ -1,9 +1,9 @@
 import { Link } from "react-router";
 import './Current.css'
-import { useData } from "../../hooks/useData";
+
 
 function Current() {
-  const { employees } = useData();
+  
 
     
   return (
@@ -22,7 +22,7 @@ function Current() {
           <th scope="col">State</th>
           <th scope="col">Zip Code</th>
         </tr>
-        {employees?.map((employee) => (
+        {/* {employees?.map((employee) => (
           <tr>
             <td>{employee.firstName}</td>
             <td>{employee.lastName}</td>
@@ -34,7 +34,7 @@ function Current() {
             <td>{employee.state}</td>
             <td>{employee.zipCode}</td>
           </tr>
-        ))}
+        ))} */}
       </table>
 
       <Link to="/">Home</Link>
