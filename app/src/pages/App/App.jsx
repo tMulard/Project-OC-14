@@ -7,13 +7,19 @@ import TextInput from "../../Components/TextInput/TextInput";
 import RollMenu from "../../Components/RollMenu/RollMenu";
 import {states} from "../../arrays.js";
 import {departments} from "../../arrays.js";
-import DataTable from "../../Components/DataTable/DataTable";
+import { employees } from "../../arrays.js";
+import { addEmployee } from "../../store/slices/employeeSlice.js";
+import { useDispatch } from "react-redux";
 
 function App() {
 
   // const [isHidden, setIsHidden] = useState(true);
 
   // const handleClick = () => { setIsHidden(!isHidden); };
+  
+  const dispatch = useDispatch();
+  //to test an initial employee addition
+  dispatch(addEmployee(employees));
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -21,9 +27,7 @@ function App() {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    // setEmployees(prev => [
-    //   ...prev, data
-    // ]);
+    dispatch(addEmployee(data));
 
     // setIsHidden(!isHidden);
   };

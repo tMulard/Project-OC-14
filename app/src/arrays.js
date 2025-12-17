@@ -254,3 +254,17 @@ export const departments = [
         "name": "Legal",
     }
 ];
+
+export const employees = [
+    {
+        "firstName" : "Dupont",
+        "lastName" : "Dupont",
+        "dateOfBirth" : "08/12/2000",
+        "startDate" : "10/06/2025",
+        "department" : "Sales",
+        "street" : "2 rue des Lumières",
+        "city" : "Paris",
+        "state" : "Alabama",
+        "zipCode" : "75000",
+    }
+];
