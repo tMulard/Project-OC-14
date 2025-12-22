@@ -7,6 +7,7 @@ function RollMenu({id, title, options}) {
         <label htmlFor={id}>{title}</label>
         <select
           id={id}
+          name={id}
           options={options}
           onChange={(value) => console.log("change!", value.target.value)}
         >

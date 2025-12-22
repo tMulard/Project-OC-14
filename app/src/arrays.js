@@ -255,7 +255,7 @@ export const departments = [
     }
 ];
 
-export const employees = [
+export const employeeTest = [
     {
         "firstName" : "Dupont",
         "lastName" : "Dupont",

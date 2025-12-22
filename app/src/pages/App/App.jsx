@@ -5,9 +5,7 @@ import "./App.css";
 import DatePicker from "../../Components/DatePicker/DatePicker";
 import TextInput from "../../Components/TextInput/TextInput";
 import RollMenu from "../../Components/RollMenu/RollMenu";
-import {states} from "../../arrays.js";
-import {departments} from "../../arrays.js";
-import { employees } from "../../arrays.js";
+import {departments, states} from "../../arrays.js";
 import { addEmployee } from "../../store/slices/employeeSlice.js";
 import { useDispatch } from "react-redux";
 
@@ -18,8 +16,6 @@ function App() {
   // const handleClick = () => { setIsHidden(!isHidden); };
   
   const dispatch = useDispatch();
-  //to test an initial employee addition
-  dispatch(addEmployee(employees));
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -41,8 +37,8 @@ function App() {
         <Link to="/current">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form action="#" id="create-employee" onSubmit={onSubmit}>
-          <TextInput id="first-name" name="firstname" title="First Name" />
-          <TextInput id="last-name" name="lastname" title="Last Name" />
+          <TextInput id="first-name" name="firstName" title="First Name" />
+          <TextInput id="last-name" name="lastName" title="Last Name" />
           <DatePicker id="date-of-birth" name="dateOfBirth" title="Date of Birth" />
           <DatePicker id="start-date" name="startDate" title="Start Date" />
           <fieldset className="address">
