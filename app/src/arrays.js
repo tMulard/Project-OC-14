@@ -261,10 +261,10 @@ export const employeeTest = [
         "lastName" : "Dupont",
         "dateOfBirth" : "08/12/2000",
         "startDate" : "10/06/2025",
-        "department" : "Sales",
         "street" : "2 rue des Lumières",
         "city" : "Paris",
         "state" : "Alabama",
         "zipCode" : "75000",
+        "department" : "Sales",
     }
 ];
