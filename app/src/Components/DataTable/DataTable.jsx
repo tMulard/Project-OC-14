@@ -1,11 +1,9 @@
-import { fill100Employees, selectEmployees } from '../../store/slices/employeeSlice';
 import './DataTable.css';
+import { selectEmployees } from '../../store/slices/employeeSlice';
 import {useSelector} from "react-redux";
-
+import { useEffect, useState } from 'react';
 import DataTable from 'datatables.net-react';
 import DT from 'datatables.net-dt';
-import { useEffect, useState } from 'react';
-
 
 DataTable.use(DT);
 
@@ -14,21 +12,15 @@ function DataTableComponent() {
     
     const [tableData, setTableData] = useState([]);
     
-    const array100 = []
     useEffect(()=>{
         // setTableData([['a','a','24/12/1969','25/12/2000','a','a','Ohio','75000','Sales']]); ajout de données test
         const employeeArray = []
-        // employees?.map((employee) => {
-        //     employeeArray.push([employee.firstName,employee.lastName,employee.dateOfBirth,employee.startDate,employee.street,employee.city,employee.state,employee.zipCode,employee.department])
-        // })
-        fill100Employees(array100);
-        array100?.map((employee) => {
+        employees?.map((employee) => {
             employeeArray.push([employee.firstName,employee.lastName,employee.dateOfBirth,employee.startDate,employee.street,employee.city,employee.state,employee.zipCode,employee.department])
         })
         setTableData(employeeArray)
     },[employees]);
     
-
     return (
       <>
         <DataTable data={tableData} className="display">

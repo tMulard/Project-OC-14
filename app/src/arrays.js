@@ -268,3 +268,44 @@ export const employeeTest = [
         "department" : "Sales",
     }
 ];
+
+export const fill100Employees = () => {
+    const array100 = [];
+    const start = new Date("2000-01-01")
+    const end = new Date("2026-01-01")
+    const generateRandomString = (length) => {
+        const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let result = '';
+        
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * alphabet.length);
+            result += alphabet.charAt(randomIndex);
+        }
+        
+        return result;
+    }
+    function getRandomDate(start, end) {
+        var randomTime = start.getTime() + Math.random() * (end.getTime() - start.getTime());
+        var randomDate = new Date(randomTime).toDateString();
+        return randomDate;
+    }
+    
+    for (let i = 0; i < 100; i++) {
+        const randState = states[Math.floor(Math.random() * states.length)].name;
+        const randDept = departments[Math.floor(Math.random() * departments.length)].name;
+        array100.push(
+            {
+                "firstName" : `${generateRandomString(8)}`,
+                "lastName" : `${generateRandomString(8)}`,
+                "dateOfBirth" : `${getRandomDate(start,end)}`,
+                "startDate" : `${getRandomDate(start,end)}`,
+                "street" : `${generateRandomString(8)}`,
+                "city" : `${generateRandomString(8)}`,
+                "state" : `${randState}`,
+                "zipCode" : `${Math.floor(Math.random() * 99999) + 1}`,
+                "department" : `${randDept}`,
+            }
+        );
+    }
+    return array100;
+};

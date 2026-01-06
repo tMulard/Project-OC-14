@@ -6,27 +6,34 @@ import DatePicker from "../../Components/DatePicker/DatePicker";
 import TextInput from "../../Components/TextInput/TextInput";
 import RollMenu from "../../Components/RollMenu/RollMenu";
 import {departments, states} from "../../arrays.js";
-import { addEmployee } from "../../store/slices/employeeSlice.js";
-import { useDispatch } from "react-redux";
+import { addEmployee, selectSuccess } from "../../store/slices/employeeSlice.js";
+import { useDispatch, useSelector } from "react-redux";
+import Modale from "../../Components/Modale/Modale.jsx";
+import { useEffect, useState } from "react";
 
 function App() {
-
-  // const [isHidden, setIsHidden] = useState(true);
-
-  // const handleClick = () => { setIsHidden(!isHidden); };
-  
   const dispatch = useDispatch();
+  const [isHidden, setIsHidden] = useState(true);
+  const success = useSelector(selectSuccess);
 
+  const handleClick = () => { setIsHidden(!isHidden); };
   const onSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-
+    //let?
     dispatch(addEmployee(data));
-
-    // setIsHidden(!isHidden);
+    //flush data after
   };
+  
+  useEffect(()=>{
+    
+    if (success) {
+      setIsHidden(!isHidden);
+    }       
+  },[success]);
+
 
   return (
     <div>
@@ -52,12 +59,12 @@ function App() {
           <button type="submit">Save</button>
         </form>
       </div>
-      <div id="confirmation" className="modal">
+      {/* <div id="confirmation" className="modal">
         Employee Created!
-      </div>
-      {/* <Modal id="confirmation" isHidden={isHidden} isHiddenCross={false} toggleDisplay={handleClick}>
-        <h1>Employee Created!</h1>
-      </Modal> */}
+      </div> */}
+      <Modale id="confirmation" isHidden={isHidden} isHiddenCross={false} handleClick={handleClick}>
+        <h1>Success! Your employee was added to the list.</h1>
+      </Modale>
     </div>
   );
 }
