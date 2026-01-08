@@ -52,6 +52,9 @@ export const EmployeeSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
+    setSuccess: (state, action) => {
+      state.success = action.payload;
+    },
   },
   selectors: {
     selectEmployees: (state) => state.employees,
@@ -69,5 +72,5 @@ export const EmployeeSlice = createSlice({
   },
 });
 
-export const { addEmployee, setError } = EmployeeSlice.actions;
+export const { addEmployee, setError, setSuccess } = EmployeeSlice.actions;
 export const { selectEmployees, selectError, selectSuccess } = EmployeeSlice.selectors;

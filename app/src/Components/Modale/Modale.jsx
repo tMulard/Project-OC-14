@@ -3,8 +3,6 @@ import { useState } from "react";
 
 function Modale({isHidden, isHiddenCross, children, handleClick}) {
 
-    
-
     return(
         <>
             {/* <button className="modaleBtn" onClick={handleClick}>

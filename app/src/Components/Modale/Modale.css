@@ -1,6 +1,7 @@
 .modale {
     border: solid 1px black;
     box-shadow: 0 0 10px #000;
+    background-color: white;
     border-radius: 20px;
     transition: 300ms;
     margin: 0 auto;

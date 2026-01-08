@@ -1,6 +1,6 @@
 import './RollMenu.css';
 
-function RollMenu({id, title, options}) {
+function RollMenu({id, title, options, valueRoll, changeRoll}) {
 
     return (
       <>
@@ -9,7 +9,8 @@ function RollMenu({id, title, options}) {
           id={id}
           name={id}
           options={options}
-          onChange={(value) => console.log("change!", value.target.value)}
+          onChange={changeRoll} //{(value) => console.log("change!", value.target.value)}
+          value={valueRoll}
         >
             {options.map((option) => <option key={option.name}>{option.name}</option>)}
         </select>
