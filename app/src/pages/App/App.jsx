@@ -9,7 +9,7 @@ import DatePicker from "../../Components/DatePicker/DatePicker";
 import TextInput from "../../Components/TextInput/TextInput";
 import RollMenu from "../../Components/RollMenu/RollMenu";
 import Modale from "../../Components/Modale/Modale.jsx";
-// import Modal from "hrnet-pluginsimplemodal";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -77,13 +77,11 @@ function App() {
   };
   
   useEffect(()=>{
-    if (success) {
-      setIsHidden(!isHidden);
-    }
+    if (success) { setIsHidden(false); }
   },[success]);
   
   return (
-    <div>
+    <section>
       <div className="title">
         <h1>HRnet</h1>
       </div>
@@ -122,7 +120,7 @@ function App() {
       <Modale id="confirmation" isHidden={isHidden} isHiddenCross={false} handleClick={handleClick}>
         <h1>Success! Your employee was added to the list.</h1>
       </Modale>
-    </div>
+    </section>
   );
 }
 
