@@ -2,14 +2,14 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { addEmployee, selectError, selectSuccess, setSuccess } from "../../store/slices/employeeSlice.js";
+import { addEmployee, selectError, selectSuccess } from "../../store/slices/employeeSlice.js";
 
 import {departments, states} from "../../arrays.js";
 import DatePicker from "../../Components/DatePicker/DatePicker";
 import TextInput from "../../Components/TextInput/TextInput";
 import RollMenu from "../../Components/RollMenu/RollMenu";
-// import Modal from "hrnet-pluginsimplemodal";
 import Modale from "../../Components/Modale/Modale.jsx";
+// import Modal from "hrnet-pluginsimplemodal";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,26 +57,21 @@ function App() {
     // Validate form data
     const errors = {};
 
-    if (!formData.firstName) { errors.firstName = 'First Name is required';}
-    if (!formData.lastName) { errors.lastName = 'Last Name is required';}
-    if (!formData.dateOfBirth) { errors.dateOfBirth = 'Date of birth is required';}
-    if (!formData.startDate) { errors.startDate = 'Start date is required';}
-    if (!formData.street) { errors.street = 'Street is required';}
-    if (!formData.city) { errors.city = 'City is required';}
-    if (!formData.state) { errors.state = 'State is required';}
-    if (!formData.zipCode) { errors.zipCode = 'Zip code is required';}
-    if (!formData.department) { errors.department = 'Department is required';}
+    if (!formData.firstName) { errors.firstName = 'Error: First Name is required';}
+    if (!formData.lastName) { errors.lastName = 'Error: Last Name is required';}
+    if (!formData.dateOfBirth) { errors.dateOfBirth = 'Error: Date of birth is required';}
+    if (!formData.startDate) { errors.startDate = 'Error: Start date is required';}
+    if (!formData.street) { errors.street = 'Error: Street is required';}
+    if (!formData.city) { errors.city = 'Error: City is required';}
+    if (!formData.state) { errors.state = 'Error: State is required';}
+    if (!formData.zipCode) { errors.zipCode = 'Error: Zip code is required';}
+    if (!formData.department) { errors.department = 'Error: Department is required';}
 
 
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
     }
-
-    // const form = e.target;
-    // const formData = new FormData(form);
-    // const data = Object.fromEntries(formData.entries());
-    
     dispatch(addEmployee(formData));
     //flush data after
   };
@@ -86,7 +81,7 @@ function App() {
       setIsHidden(!isHidden);
     }
   },[success]);
-
+  
   return (
     <div>
       <div className="title">
@@ -122,8 +117,8 @@ function App() {
         </form>
       </div>
       {/* <div id="confirmation" className="modal">
-        Employee Created!
-      </div> */}
+        <h1>Success! Your employee was added to the list.</h1>
+        </div> */}
       <Modale id="confirmation" isHidden={isHidden} isHiddenCross={false} handleClick={handleClick}>
         <h1>Success! Your employee was added to the list.</h1>
       </Modale>
@@ -131,4 +126,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;   

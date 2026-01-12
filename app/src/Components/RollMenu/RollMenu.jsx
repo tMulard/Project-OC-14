@@ -12,6 +12,7 @@ function RollMenu({id, title, options, valueRoll, changeRoll}) {
           onChange={changeRoll} //{(value) => console.log("change!", value.target.value)}
           value={valueRoll}
         >
+            <option key={title+'blank'}></option>
             {options.map((option) => <option key={option.name}>{option.name}</option>)}
         </select>
       </>
