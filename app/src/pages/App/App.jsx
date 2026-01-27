@@ -8,8 +8,8 @@ import {departments, states} from "../../arrays.js";
 import DatePicker from "../../Components/DatePicker/DatePicker";
 import TextInput from "../../Components/TextInput/TextInput";
 import RollMenu from "../../Components/RollMenu/RollMenu";
-import Modale from "../../Components/Modale/Modale.jsx";
-
+// import Modale from "../../Components/Modale/Modale.jsx";
+import { Modale } from 'hrnet-pluginsimplemodal';
 
 function App() {
   const dispatch = useDispatch();
