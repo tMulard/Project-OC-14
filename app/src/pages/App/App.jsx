@@ -8,7 +8,7 @@ import {departments, states} from "../../arrays.js";
 import DatePicker from "../../Components/DatePicker/DatePicker";
 import TextInput from "../../Components/TextInput/TextInput";
 import RollMenu from "../../Components/RollMenu/RollMenu";
-// import Modale from "../../Components/Modale/Modale.jsx";
+
 import { Modale } from 'hrnet-pluginsimplemodal';
 
 function App() {
@@ -114,9 +114,6 @@ function App() {
           <button type="submit">Save</button>
         </form>
       </div>
-      {/* <div id="confirmation" className="modal">
-        <h1>Success! Your employee was added to the list.</h1>
-        </div> */}
       <Modale id="confirmation" isHidden={isHidden} isHiddenCross={false} handleClick={handleClick}>
         <h1>Success! Your employee was added to the list.</h1>
       </Modale>
