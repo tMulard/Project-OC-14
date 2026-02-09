@@ -81,7 +81,7 @@ function App() {
   },[success]);
   
   return (
-    <section>
+    <main>
       <div className="title">
         <h1>HRnet</h1>
       </div>
@@ -117,7 +117,7 @@ function App() {
       <Modale id="confirmation" isHidden={isHidden} isHiddenCross={false} handleClick={handleClick}>
         <h1>Success! Your employee was added to the list.</h1>
       </Modale>
-    </section>
+    </main>
   );
 }
 
