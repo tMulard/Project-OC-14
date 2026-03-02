@@ -1,0 +1,18 @@
+@import 'datatables.net-dt';
+
+
+.dt-length {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 180px;
+    align-items: center;
+}
+
+.dt-search {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 180px;
+    align-items: center;
+}

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fill100Employees } from "../../arrays";
 
 export const EmployeeSlice = createSlice({
   name: "employee",
   initialState: {
-    employees: [], //array of employees
+    employees: fill100Employees(), //array of employees, with data for each object available under
     // firstName: "",
     // lastName: "",
     // dateOfBirth: null,
@@ -14,10 +15,12 @@ export const EmployeeSlice = createSlice({
     // state: "",
     // zipCode: "",
     error: "",
+    success: "",
   },
   reducers: {
-    setEmployees: (state, action) => {
-      state.employees.push({...action.payload});
+    addEmployee: (state, action) => {
+      state.employees.push({...action.payload}); //adding one employee to the array
+      state.success = true;
     },
     // setFirstName: (state, action) => {
     //   state.firstName = action.payload;
@@ -49,6 +52,9 @@ export const EmployeeSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
+    setSuccess: (state, action) => {
+      state.success = action.payload;
+    },
   },
   selectors: {
     selectEmployees: (state) => state.employees,
@@ -62,16 +68,9 @@ export const EmployeeSlice = createSlice({
     // selectState: (state) => state.state,
     // selectZipCode: (state) => state.zipCode,
     selectError : (state) => state.error,
+    selectSuccess : (state) => state.success,
   },
 });
 
-export const { setEmployees, setError } = EmployeeSlice.actions;
-export const { selectEmployees, selectError } = EmployeeSlice.selectors;
-
-export const addEmployee = (data) => async (dispatch) => {
-  try {
-    dispatch(setEmployees(data));
-  } catch (error) {
-    dispatch(setError(error.toString()));
-  }
-}
+export const { addEmployee, setError, setSuccess } = EmployeeSlice.actions;
+export const { selectEmployees, selectError, selectSuccess } = EmployeeSlice.selectors;

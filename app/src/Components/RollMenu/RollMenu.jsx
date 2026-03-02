@@ -1,15 +1,18 @@
 import './RollMenu.css';
 
-function RollMenu({id, title, options}) {
+function RollMenu({id, title, options, valueRoll, changeRoll}) {
 
     return (
       <>
         <label htmlFor={id}>{title}</label>
         <select
           id={id}
+          name={id}
           options={options}
-          onChange={(value) => console.log("change!", value.target.value)}
+          onChange={changeRoll} //{(value) => console.log("change!", value.target.value)}
+          value={valueRoll}
         >
+            <option key={title+'blank'}></option>
             {options.map((option) => <option key={option.name}>{option.name}</option>)}
         </select>
       </>
