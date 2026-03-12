@@ -2,16 +2,24 @@ import './DataTable.css';
 import { selectEmployees } from '../../store/slices/employeeSlice';
 import {useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
-import DataTable from 'datatables.net-react';
-import DT from 'datatables.net-dt';
 
-DataTable.use(DT);
+import {DataTable} from "simple-datatables";
+
 
 function DataTableComponent() {
     const employees = useSelector(selectEmployees);
     
     const [tableData, setTableData] = useState([]);
     
+    
+    const dataTable = new DataTable("#myTable",
+      {
+        columns : ['First Name', 'Last Name', 'Date of birth', 'Start date', 'Street', 'City', 'State', 'Zip code', 'Department'],
+        data : {tableData}
+      }
+    );
+
+
     useEffect(()=>{
         // setTableData([['a','a','24/12/1969','25/12/2000','a','a','Ohio','75000','Sales']]); ajout de données test
         const employeeArray = []
@@ -23,7 +31,8 @@ function DataTableComponent() {
     
     return (
       <>
-        <DataTable data={tableData} className="display">
+        <DataTable columns={dataTable.columns} data={dataTable.data}/>
+        {/* <DataTable data={tableData} className="display">
           <thead>
             <tr>
               <th scope="col">First Name</th>
@@ -37,7 +46,7 @@ function DataTableComponent() {
               <th scope="col">Department</th>
             </tr>
           </thead>
-        </DataTable>
+        </DataTable> */}
       </>
     );
 }

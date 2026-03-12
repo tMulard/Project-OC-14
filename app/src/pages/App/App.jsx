@@ -53,13 +53,13 @@ function App() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+    setFormErrors("");
     // Validate form data
     const errors = {};
-
     if (!formData.firstName) { errors.firstName = 'Error: First Name is required';}
     if (!formData.lastName) { errors.lastName = 'Error: Last Name is required';}
     if (!formData.dateOfBirth) { errors.dateOfBirth = 'Error: Date of birth is required';}
+    if (formData.dateOfBirth >= formData.startDate) {errors.dateOfBirth = 'Error: Date of birth must be anterior to start date';}
     if (!formData.startDate) { errors.startDate = 'Error: Start date is required';}
     if (!formData.street) { errors.street = 'Error: Street is required';}
     if (!formData.city) { errors.city = 'Error: City is required';}
@@ -72,12 +72,16 @@ function App() {
       setFormErrors(errors);
       return;
     }
+
     dispatch(addEmployee(formData));
+    
     //flush data after
+    setFormData("");
   };
   
-  useEffect(()=>{
+  useEffect(()=> {
     if (success) { setIsHidden(false); }
+    else {setIsHidden(true);}
   },[success]);
   
   return (

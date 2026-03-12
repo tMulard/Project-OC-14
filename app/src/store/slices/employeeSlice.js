@@ -5,15 +5,6 @@ export const EmployeeSlice = createSlice({
   name: "employee",
   initialState: {
     employees: fill100Employees(), //array of employees, with data for each object available under
-    // firstName: "",
-    // lastName: "",
-    // dateOfBirth: null,
-    // startDate: null,
-    // department: "",
-    // street: "",
-    // city: "",
-    // state: "",
-    // zipCode: "",
     error: "",
     success: "",
   },
@@ -22,33 +13,6 @@ export const EmployeeSlice = createSlice({
       state.employees.push({...action.payload}); //adding one employee to the array
       state.success = true;
     },
-    // setFirstName: (state, action) => {
-    //   state.firstName = action.payload;
-    // },
-    // setLastName: (state, action) => {
-    //   state.lastName = action.payload;
-    // },
-    // setDateOfBirth: (state, action) => {
-    //   state.dateOfBirth = action.payload;
-    // },
-    // setStartDate: (state, action) => {
-    //   state.startDate = action.payload;
-    // },
-    // setDepartment: (state, action) => {
-    //   state.department = action.payload;
-    // },
-    // setStreet: (state, action) => {
-    //   state.street = action.payload;
-    // },
-    // setCity: (state, action) => {
-    //   state.city = action.payload;
-    // },
-    // setState: (state, action) => {
-    //   state.state = action.payload;
-    // },
-    // setZipCode: (state, action) => {
-    //   state.zipCode = action.payload;
-    // },
     setError: (state, action) => {
       state.error = action.payload;
     },
@@ -58,15 +22,6 @@ export const EmployeeSlice = createSlice({
   },
   selectors: {
     selectEmployees: (state) => state.employees,
-    // selectFirstName: (state) => state.firstName,
-    // selectLastName: (state) => state.lastName,
-    // selectDateOfBirth: (state) => state.dateOfBirth,
-    // selectStartDate: (state) => state.startDate,
-    // selectDepartment: (state) => state.department,
-    // selectStreet: (state) => state.street,
-    // selectCity: (state) => state.city,
-    // selectState: (state) => state.state,
-    // selectZipCode: (state) => state.zipCode,
     selectError : (state) => state.error,
     selectSuccess : (state) => state.success,
   },
