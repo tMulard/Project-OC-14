@@ -74,13 +74,22 @@ function App() {
     }
 
     dispatch(addEmployee(formData));
-    
-    //flush data after
-    setFormData("");
   };
   
   useEffect(()=> {
-    if (success) { setIsHidden(false); }
+    if (success) { 
+      setIsHidden(false);
+      //flush data after
+      setFormData({firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      startDate: "",
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      department: ""});
+    }
     else {setIsHidden(true);}
   },[success]);
   
@@ -90,7 +99,7 @@ function App() {
         <h1>HRnet</h1>
       </div>
       <div className="container">
-        <Link to="/current">View Current Employees</Link>
+        <Link to="/current" className="currentLink">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form id="create-employee" onSubmit={onSubmit}>
           <TextInput id="first-name" name="firstName" title="First Name" valueText={formData.firstName} changeText={handleChange}/>
