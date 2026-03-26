@@ -3,50 +3,78 @@ import { selectEmployees } from '../../store/slices/employeeSlice';
 import {useSelector} from "react-redux";
 import { useEffect, useState } from 'react';
 
-import {DataTable} from "simple-datatables";
-
+import { Table } from 'antd';
 
 function DataTableComponent() {
     const employees = useSelector(selectEmployees);
     
     const [tableData, setTableData] = useState([]);
     
-    
-    const dataTable = new DataTable("#myTable",
-      {
-        columns : ['First Name', 'Last Name', 'Date of birth', 'Start date', 'Street', 'City', 'State', 'Zip code', 'Department'],
-        data : {tableData}
-      }
-    );
+    // const dataSource = [
+    //   {
+    //     key: '101',
+    //     firstName: 'dupont',
+    //     lastName:'dupont',
+    //     dateOfBirth:'2025-01-01',
+    //     startDate:'2026-01-01',
+    //     street:'azfszdf',
+    //     city:'gdhdfjfg',
+    //     state:'Alabama',
+    //     zipCode:'75000',
+    //     department:'Human Ressources',
+    //   },
+    // ];
 
+    const columns = [
+      {
+        title: 'First Name',
+        dataIndex: 'firstName',
+      },
+      {
+        title: 'Last Name',
+        dataIndex: 'lastName',
+      },
+      {
+        title: 'Date of Birth',
+        dataIndex: 'dateOfBirth',
+      },
+      {
+        title: 'Start Date',
+        dataIndex: 'startDate',
+      },
+      {
+        title: 'Street',
+        dataIndex: 'street',
+      },
+      {
+        title: 'City',
+        dataIndex: 'city',
+      },
+      {
+        title: 'State',
+        dataIndex: 'state',
+      },
+      {
+        title: 'Zip Code',
+        dataIndex: 'zipCode',
+      },
+      {
+        title: 'Department',
+        dataIndex: 'department',
+      },
+    ];
 
     useEffect(()=>{
-        // setTableData([['a','a','24/12/1969','25/12/2000','a','a','Ohio','75000','Sales']]); ajout de données test
         const employeeArray = []
-        employees?.map((employee) => {
-            employeeArray.push([employee.firstName,employee.lastName,employee.dateOfBirth,employee.startDate,employee.street,employee.city,employee.state,employee.zipCode,employee.department])
+        employees?.map((employee, index) => {
+            employeeArray.push([index,employee.firstName,employee.lastName,employee.dateOfBirth,employee.startDate,employee.street,employee.city,employee.state,employee.zipCode,employee.department])
         })
         setTableData(employeeArray)
     },[employees]);
     
     return (
       <>
-        <DataTable columns={dataTable.columns} data={dataTable.data}/>
-        {/* <DataTable data={tableData} className="display">
-          <thead>
-            <tr>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Date of Birth</th>
-              <th scope="col">Start Date</th>
-              <th scope="col">Street</th>
-              <th scope="col">City</th>
-              <th scope="col">State</th>
-              <th scope="col">Zip Code</th>
-              <th scope="col">Department</th>
-            </tr>
-          </thead>
-        </DataTable> */}
+        <Table dataSource={tableData} columns={columns}/>
       </>
     );
 }

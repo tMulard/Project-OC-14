@@ -295,6 +295,7 @@ export const fill100Employees = () => {
         const randDept = departments[Math.floor(Math.random() * departments.length)].name;
         array100.push(
             {
+                "key" : `${i+1}`,
                 "firstName" : `${generateRandomString(8)}`,
                 "lastName" : `${generateRandomString(8)}`,
                 "dateOfBirth" : `${getRandomDate(start,end)}`,
