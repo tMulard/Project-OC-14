@@ -10,7 +10,7 @@ function Current() {
     <div id="employee-div" className="container">
       <h1>Current Employees</h1>
       <DataTableComponent />
-      <Link to="/">Home</Link>
+      <Link to="/" className="homeLink">Home</Link>
     </div>
   );
 }

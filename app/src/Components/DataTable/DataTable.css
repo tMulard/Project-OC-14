@@ -1,0 +1,7 @@
+#employee-table {
+    max-width: 1400px;
+}
+
+.ant-table-cell {
+    min-width: 130px;
+}
