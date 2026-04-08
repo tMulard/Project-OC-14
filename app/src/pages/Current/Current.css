@@ -13,3 +13,8 @@ tr {
 .homeLink {
     margin: 20px;
 }
+
+
+.container {
+    max-width : 1172px;
+}

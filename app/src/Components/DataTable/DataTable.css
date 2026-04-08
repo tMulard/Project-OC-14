@@ -5,3 +5,7 @@
 .ant-table-cell {
     min-width: 130px;
 }
+
+.inputContainer {
+    align-self: flex-end;
+}

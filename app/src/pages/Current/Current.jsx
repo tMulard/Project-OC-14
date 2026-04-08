@@ -7,11 +7,11 @@ function Current() {
 
     
   return (
-    <div id="employee-div" className="container">
+    <main id="employee-div" className="container">
       <h1>Current Employees</h1>
       <DataTableComponent />
       <Link to="/" className="homeLink">Home</Link>
-    </div>
+    </main>
   );
 }
 

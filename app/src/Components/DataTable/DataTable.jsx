@@ -9,6 +9,7 @@ function DataTableComponent() {
     const employees = useSelector(selectEmployees);
     const results = useSelector(selectResults);
     const dispatch = useDispatch();
+    const [queryState, setQueryState] = useState('');
 
     const columns = [
       {
@@ -80,26 +81,29 @@ function DataTableComponent() {
     const debouncedSearchResults = debounce(searchResults, 500);
 
     const handleChange = (event) => {
-      const query = event.target.value;
-      debouncedSearchResults(query);
+      debouncedSearchResults(event.target.value);
     };
 
     function searchResults (query) {
-      if (query.length >= 3) dispatch(filterResults(query));
-      else if (query.length == 0) setTableData(employees);
+      if (query.length >= 3) { 
+        setQueryState(query);
+        return dispatch(filterResults(query));
+      }
+      return setTableData(employees);
     }
 
     useEffect(()=> {
       if (results.length > 0) {setTableData(results);}
-    },[results]);
+      if (results.length === 0 && queryState?.length >= 3) {setTableData([]);}
+    },[results, queryState]);
 
     return (
       <>
-        <label>
+        <label className='inputContainer'>
           Search:
           <input className="searchInput" type='search' name='searchInput' onChange={handleChange}/> 
         </label>
-        {employees.length > 0 && <Table dataSource={tableData} columns={columns} id="employee-table" pagination={{ placement: ['topStart'] }} showSorterTooltip={{ target: 'sorter-icon' }} />}
+        {employees.length > 0 && <Table dataSource={tableData} columns={columns} id="employee-table" pagination={{ placement: ['bottomEnd'] }} showSorterTooltip={{ target: 'sorter-icon' }} />}
       </>
     );
 }
