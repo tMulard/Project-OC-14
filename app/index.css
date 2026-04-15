@@ -1,0 +1,86 @@
+
+main {
+    font-family: Arial, sans-serif ;
+    margin: 20px auto;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-weight: bold;
+    line-height: 25px;
+    font-size: 20px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.currentLink {
+    padding-top: 20px;
+    text-decoration: underline;
+    color: blue;
+}
+
+h2 {
+    font-weight: bold;
+    padding: 20px 0;
+}
+
+#create-employee {
+    border : solid 3px rgba(0.9, 0.9, 0.9, 0.1);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding : 0 10px;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 10px;
+}
+
+input {
+    border: solid 1px rgba(0.9, 0.9, 0.9, 0.5);
+}
+
+select {
+    border: solid 1px rgba(0.9, 0.9, 0.9, 0.5);
+    max-width: 80%;
+}
+.address {
+    padding : 10px 0 ;
+    border : solid 3px rgba(0.9, 0.9, 0.9, 0.1);
+    border-radius: 30px;
+}
+
+legend {
+    margin : 0 auto;
+}
+
+#confirmation {
+    visibility: hidden;
+}
+
+.error {
+    color: red;
+}
+
+button {
+    border : solid 1px rgba(0.9, 0.9, 0.9, 0.1);
+    border-radius: 10px;
+    padding : 5px;
+    background-color: rgb(111, 134, 206);
+    color: white;
+    margin : 10px;
+}

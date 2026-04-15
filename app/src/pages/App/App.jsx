@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { addEmployee, selectError, selectSuccess } from "../../store/slices/employeeSlice.js";
+import { addEmployee, selectError, selectSuccess, setSuccess } from "../../store/slices/employeeSlice.js";
 
 import {departments, states} from "../../arrays.js";
 import DatePicker from "../../Components/DatePicker/DatePicker";
@@ -12,13 +12,18 @@ import RollMenu from "../../Components/RollMenu/RollMenu";
 import { Modale } from 'hrnet-pluginsimplemodal';
 
 function App() {
+  //Variables declaration
   const dispatch = useDispatch();
   const [isHidden, setIsHidden] = useState(true);
   const success = useSelector(selectSuccess);
   const errorMsg = useSelector(selectError);
 
-  const handleClick = () => { setIsHidden(!isHidden); };
-
+  //Function that activates when you click on the close button on the success message
+  const handleClick = () => { 
+    setIsHidden(!isHidden);
+    dispatch(setSuccess(false));
+  };
+  //Variables tied to the form element
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,7 +35,7 @@ function App() {
     zipCode: "",
     department: "",
   });
-
+  //Error messages
   const [formErrors, setFormErrors] = useState({
     firstName: "",
     lastName: "",
@@ -42,7 +47,7 @@ function App() {
     zipCode: "",
     department: "",
   });
-
+  //Function that adds the strings from the form to their respective variables
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
@@ -53,13 +58,14 @@ function App() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+    //Reset errors if any prior to activation
+    setFormErrors("");
     // Validate form data
     const errors = {};
-
     if (!formData.firstName) { errors.firstName = 'Error: First Name is required';}
     if (!formData.lastName) { errors.lastName = 'Error: Last Name is required';}
     if (!formData.dateOfBirth) { errors.dateOfBirth = 'Error: Date of birth is required';}
+    if (formData.dateOfBirth >= formData.startDate) {errors.dateOfBirth = 'Error: Date of birth must be anterior to start date';}
     if (!formData.startDate) { errors.startDate = 'Error: Start date is required';}
     if (!formData.street) { errors.street = 'Error: Street is required';}
     if (!formData.city) { errors.city = 'Error: City is required';}
@@ -72,12 +78,26 @@ function App() {
       setFormErrors(errors);
       return;
     }
+    //Send data to db
     dispatch(addEmployee(formData));
-    //flush data after
   };
   
-  useEffect(()=>{
-    if (success) { setIsHidden(false); }
+  useEffect(()=> {
+    if (success) { 
+      //Show modale
+      setIsHidden(false);
+      //Refresh data after
+      setFormData({firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      startDate: "",
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      department: ""});
+    }
+    else {setIsHidden(true);}
   },[success]);
   
   return (
@@ -86,7 +106,7 @@ function App() {
         <h1>HRnet</h1>
       </div>
       <div className="container">
-        <Link to="/current">View Current Employees</Link>
+        <Link to="/current" className="currentLink">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form id="create-employee" onSubmit={onSubmit}>
           <TextInput id="first-name" name="firstName" title="First Name" valueText={formData.firstName} changeText={handleChange}/>

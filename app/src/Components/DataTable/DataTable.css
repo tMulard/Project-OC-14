@@ -1,18 +1,11 @@
-@import 'datatables.net-dt';
-
-
-.dt-length {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 180px;
-    align-items: center;
+#employee-table {
+    max-width: 1400px;
 }
 
-.dt-search {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 180px;
-    align-items: center;
+.ant-table-cell {
+    min-width: 130px;
+}
+
+.inputContainer {
+    align-self: flex-end;
 }
