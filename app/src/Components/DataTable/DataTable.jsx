@@ -69,7 +69,8 @@ function DataTableComponent() {
     ];
 
     const [tableData, setTableData] = useState(employees);
-
+    
+    //Delayed launch function
     function debounce(func, timeout = 300) {
       let timer;
       return (...args) => {
@@ -77,7 +78,7 @@ function DataTableComponent() {
         timer = setTimeout(() => { func.apply(this, args); }, timeout);
       };
     }
-
+    //Delayed search
     const debouncedSearchResults = debounce(searchResults, 500);
 
     const handleChange = (event) => {
@@ -85,13 +86,14 @@ function DataTableComponent() {
     };
 
     function searchResults (query) {
+      //Starting search for at least 3 characters
       if (query.length >= 3) { 
         setQueryState(query);
         return dispatch(filterResults(query));
       }
       return setTableData(employees);
     }
-
+    //Refresh data and switching from employee array to the results
     useEffect(()=> {
       if (results.length > 0) {setTableData(results);}
       if (results.length === 0 && queryState?.length >= 3) {setTableData([]);}
@@ -103,6 +105,7 @@ function DataTableComponent() {
           Search:
           <input className="searchInput" type='search' name='searchInput' onChange={handleChange}/> 
         </label>
+        {/* If the employee array is filled, show the data table */}
         {employees.length > 0 && <Table dataSource={tableData} columns={columns} id="employee-table" pagination={{ placement: ['bottomEnd'] }} showSorterTooltip={{ target: 'sorter-icon' }} />}
       </>
     );

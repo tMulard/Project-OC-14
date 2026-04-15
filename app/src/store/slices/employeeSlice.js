@@ -5,7 +5,7 @@ export const EmployeeSlice = createSlice({
   name: "employee",
   initialState: {
     employees: fill100Employees(), //array of employees, with data for each object available under
-    results:[],
+    results:[], //array containing search results, to be switched to when showing results
     error: "",
     success: "",
   },
@@ -37,9 +37,10 @@ export const { selectEmployees, selectResults, selectError, selectSuccess } = Em
 
 
 export const filterResults = (query) => (dispatch, getState) => {
+  //Getting the current state of the employee array
   const employees = selectEmployees(getState());
   const lcQuery = query.toLowerCase()
-
+  //Filtering through the array by checking if any part of it contains the query string
   const result = employees.filter((employee) => {
     return ['firstName','lastName','dateOfBirth','startDate','street','city','state','zipCode', 'department'].some((key) => {
       if (employee[key].toLowerCase().includes(lcQuery)) {

@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { addEmployee, selectError, selectSuccess } from "../../store/slices/employeeSlice.js";
+import { addEmployee, selectError, selectSuccess, setSuccess } from "../../store/slices/employeeSlice.js";
 
 import {departments, states} from "../../arrays.js";
 import DatePicker from "../../Components/DatePicker/DatePicker";
@@ -12,13 +12,18 @@ import RollMenu from "../../Components/RollMenu/RollMenu";
 import { Modale } from 'hrnet-pluginsimplemodal';
 
 function App() {
+  //Variables declaration
   const dispatch = useDispatch();
   const [isHidden, setIsHidden] = useState(true);
   const success = useSelector(selectSuccess);
   const errorMsg = useSelector(selectError);
 
-  const handleClick = () => { setIsHidden(!isHidden); };
-
+  //Function that activates when you click on the close button on the success message
+  const handleClick = () => { 
+    setIsHidden(!isHidden);
+    dispatch(setSuccess(false));
+  };
+  //Variables tied to the form element
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -30,7 +35,7 @@ function App() {
     zipCode: "",
     department: "",
   });
-
+  //Error messages
   const [formErrors, setFormErrors] = useState({
     firstName: "",
     lastName: "",
@@ -42,7 +47,7 @@ function App() {
     zipCode: "",
     department: "",
   });
-
+  //Function that adds the strings from the form to their respective variables
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
@@ -53,6 +58,7 @@ function App() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    //Reset errors if any prior to activation
     setFormErrors("");
     // Validate form data
     const errors = {};
@@ -72,14 +78,15 @@ function App() {
       setFormErrors(errors);
       return;
     }
-
+    //Send data to db
     dispatch(addEmployee(formData));
   };
   
   useEffect(()=> {
     if (success) { 
+      //Show modale
       setIsHidden(false);
-      //flush data after
+      //Refresh data after
       setFormData({firstName: "",
       lastName: "",
       dateOfBirth: "",
